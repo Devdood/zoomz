@@ -102,7 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8669038031761421478}
-  - component: {fileID: 8669038031768607576}
   m_Layer: 0
   m_Name: Mr Grey
   m_TagString: Untagged
@@ -126,25 +125,6 @@ Transform:
   m_Father: {fileID: 8715381016522898550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8669038031768607576
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669038031761188998}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 647a098ac19a9504ea02872319c753d7, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8669038031761189000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,8 +1113,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8715381016522898541}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e32528b7972c2204e8a3b7a54fcf1642, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 647a098ac19a9504ea02872319c753d7, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6211cb96d99c49144b6390961a50afaa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1162,3 +1142,4 @@ MonoBehaviour:
   health: 3
   hitParticleEffect: {fileID: 8694509967379722048, guid: e84d76d46ee29014e89a5396da93892d,
     type: 3}
+  seekRadius: 10

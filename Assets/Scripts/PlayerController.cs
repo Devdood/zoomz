@@ -73,7 +73,17 @@ public class PlayerController : MonoBehaviour
             player.StopMoving();
         }
 
-        if(Input.GetButton("Jump"))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.ChangeWeapons(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            player.ChangeWeapons(1);
+        }
+
+        if (Input.GetButton("Jump"))
         {
             player.Jump();
         }

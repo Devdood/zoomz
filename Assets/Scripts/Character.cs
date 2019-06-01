@@ -107,6 +107,8 @@ public class Character : MonoBehaviour
         Health -= damageInfo.Damage;
         OnDamage(this);
 
+        animator.SetTrigger("damage");
+
         if(Health <= 0)
         {
             Die(damageInfo);
