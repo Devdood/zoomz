@@ -7,6 +7,9 @@ public class ViewController : MonoBehaviour
     [SerializeField]
     private Player player;
 
+    [SerializeField]
+    private Transform camera;
+
     private float x;
     private float y;
 
@@ -17,5 +20,8 @@ public class ViewController : MonoBehaviour
 
         player.transform.rotation = Quaternion.Euler(0, x, 0);
         player.Model.transform.localEulerAngles = new Vector3(y, 0, 0);
+
+        camera.transform.rotation = player.Model.rotation;
+        camera.transform.position = player.Model.position;
     }
 }

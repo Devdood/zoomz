@@ -277,7 +277,7 @@ MonoBehaviour:
   hitParticleEffect: {fileID: 8694509967379722048, guid: e84d76d46ee29014e89a5396da93892d,
     type: 3}
   seekRadius: 10
-  attackRadius: 10
+  attackRadius: 50
   attackSpeed: 3
   attackPower: 15
   cannons:

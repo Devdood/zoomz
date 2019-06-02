@@ -55,6 +55,7 @@ public class Character : MonoBehaviour
     }
 
     public event Action<Character> OnDamage = delegate { };
+    public event Action<Character> OnDeath = delegate { };
     public event Action<Character> OnHealthChanged = delegate { };
 
     protected virtual void Awake()
@@ -120,6 +121,7 @@ public class Character : MonoBehaviour
 
     public virtual void Die(DamageInfo damageInfo)
     {
+        OnDeath(this);
         Destroy(gameObject);
     }
 

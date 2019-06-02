@@ -40,7 +40,7 @@ public class PlayerController : Singleton<PlayerController>
         SetLockCursorState(!isPaused);
     }
 
-    private void SetLockCursorState(bool isLocked)
+    public void SetLockCursorState(bool isLocked)
     {
         Cursor.lockState = isLocked ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !isLocked;
