@@ -14,6 +14,15 @@ public class Monster : Character
     [SerializeField]
     private float seekRadius = 10;
 
+    [SerializeField]
+    private float attackRadius = 7;
+
+    [SerializeField]
+    private float attackSpeed = 1f;
+
+    [SerializeField]
+    private int attackPower;
+
     protected Character target;
 
     protected override void Awake()
@@ -128,6 +137,27 @@ public class Monster : Character
     {
         SetDestination(target.transform.position);
         MoveToDestination(target.transform.position, 2);
+
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        if(distance <= attackRadius)
+        {
+            if(Time.time > lastAttackTime + attackSpeed)
+            {
+                Attack();
+            }
+        }
+    }
+
+    public override void Attack()
+    {
+        base.Attack();
+
+        Debug.Log(gameObject + " Hit: " + target.gameObject);
+        target.TakeDamage(new DamageInfo()
+        {
+            Attacker = this,
+            Damage = attackPower
+        });
     }
 
     private void UpdateRoamingState()

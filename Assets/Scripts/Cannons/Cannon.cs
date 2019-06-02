@@ -11,5 +11,5 @@ public abstract class Cannon : MonoBehaviour
     [SerializeField]
     protected int damage = 1;
 
-    public abstract void Shoot(Character shooter);
+    public abstract void Shoot(Character shooter, Vector3 direction);
 }

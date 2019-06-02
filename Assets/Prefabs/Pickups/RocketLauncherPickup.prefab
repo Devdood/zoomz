@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponId: 1
+  ammo: 5
 --- !u!54 &7152926107395410930
 Rigidbody:
   m_ObjectHideFlags: 0

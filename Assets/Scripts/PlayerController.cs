@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField]
     private Player player;
@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private ViewController viewController;
 
     private float x, y;
+
+    public Player Player { get => player; set => player = value; }
 
     private void Start()
     {
@@ -53,9 +55,9 @@ public class PlayerController : MonoBehaviour
 
         if(GameManager.Instance.Paused)
         {
-            if(player.IsMoving)
+            if(Player.IsMoving)
             {
-                player.StopMoving();
+                Player.StopMoving();
             }
             return;
         }
@@ -66,33 +68,33 @@ public class PlayerController : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            player.Move(player.transform.rotation * direction);
+            Player.Move(Player.transform.rotation * direction);
         }
         else
         {
-            player.StopMoving();
+            Player.StopMoving();
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            player.ChangeWeapons(0);
+            Player.ChangeWeapons(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            player.ChangeWeapons(1);
+            Player.ChangeWeapons(1);
         }
 
         if (Input.GetButton("Jump"))
         {
-            player.Jump();
+            Player.Jump();
         }
 
         if(Input.GetMouseButtonDown(0))
         {
-            if (player.CanAttack)
+            if (Player.CanAttack)
             {
-                player.Attack();
+                Player.Attack();
             }
         }
     }

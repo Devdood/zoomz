@@ -7,10 +7,9 @@ public class ProjectileCannon : Cannon
     [SerializeField]
     private Projectile projectile;
 
-    public override void Shoot(Character shooter)
+    public override void Shoot(Character shooter, Vector3 direction)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Projectile projectileInstance = Instantiate(projectile, shootSlot.position, shootSlot.rotation);
-        projectileInstance.Shoot(shooter, ray.direction);
+        projectileInstance.Shoot(shooter, direction);
     }
 }

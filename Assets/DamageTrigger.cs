@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionTrigger : MonoBehaviour
+public class DamageTrigger : MonoBehaviour
 {
     [SerializeField]
     private int damage = 10;
-
-    [SerializeField]
-    private int explosionRadius = 10;
 
     [SerializeField]
     private GameObject explosionFx;
@@ -23,38 +20,33 @@ public class ExplosionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(destroyOnTouch)
-        {
-            Destroy(gameObject);
-        }
-
-        if(explosionFx != null)
+        if (explosionFx != null)
         {
             VfxManager.Instance.SpawnEffect(explosionFx, transform.position);
         }
 
-        if (enemyTrigger)
-        {
-            List<Player> players = GameUtils.GetNearbyObjectsByType<Player>(transform.position, explosionRadius);
-            foreach (var player in players)
-            {
-                DealDamageToTarget(player);
-            }
+        if(enemyTrigger)
+        { 
+            Player player = other.GetComponent<Player>();
+            DealDamageToTarget(player);
         }
         else
         {
-            List<Monster> monsters = GameUtils.GetNearbyObjectsByType<Monster>(transform.position, explosionRadius);
-            foreach (var monster in monsters)
-            {
-                DealDamageToTarget(monster);
-            }
+            Monster monster = other.GetComponent<Monster>();
+            DealDamageToTarget(monster);
         }
     }
+
     private void DealDamageToTarget(Character monster)
     {
-        if (monster == null)
+        if(monster == null)
         {
             return;
+        }
+
+        if (destroyOnTouch)
+        {
+            Destroy(gameObject);
         }
 
         monster.TakeDamage(new DamageInfo()

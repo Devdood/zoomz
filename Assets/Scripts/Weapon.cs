@@ -10,9 +10,11 @@ public class Weapon : MonoBehaviour
 
     public void Attack(Character shooter)
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
         foreach (Cannon cannon in cannons)
         {
-            cannon.Shoot(shooter);
+            cannon.Shoot(shooter, ray.direction);
         }
     }
 }

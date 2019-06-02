@@ -11,14 +11,19 @@ public class Player : Character
     [SerializeField]
     private Transform hand;
 
-
     [SerializeField]
     private Weapon weapon;
 
     [SerializeField]
     private List<WeaponSlot> weapons;
 
+    private WeaponSlot actualSlot;
+
     public Transform Model { get => model; set => model = value; }
+    public WeaponSlot ActualSlot { get => actualSlot; }
+
+    public event Action<Player, WeaponSlot> OnWeaponChanged = delegate { };
+    public event Action<Player, WeaponSlot> OnShoot = delegate { };
 
     protected override void Awake()
     {
@@ -53,12 +58,15 @@ public class Player : Character
 
         Weapon baseWeapon = WeaponsManager.Instance.GetWeaponById(weapons[slot].weaponId);
         weapon = Instantiate(baseWeapon, hand.position, hand.rotation, hand);
+
+        actualSlot = weapons[slot];
+        OnWeaponChanged(this, ActualSlot);
     }
 
-    public void GiveWeapon(int weaponId)
+    public void GiveWeapon(int weaponId, int ammo)
     {
         WeaponSlot wep = FindWeapon(weaponId);
-
+        Debug.Log(ammo);
         if(wep != null)
         {
             Debug.Log("Add ammo");
@@ -67,7 +75,8 @@ public class Player : Character
         {
             weapons.Add(new WeaponSlot()
             {
-                weaponId = weaponId
+                weaponId = weaponId,
+                ammo = ammo
             });
         }
     }
@@ -76,9 +85,17 @@ public class Player : Character
     {
         if (weapon != null)
         {
-            base.Attack();
+            if (ActualSlot.ammo > 0 || ActualSlot.ammo == -1)
+            {
+                base.Attack();
 
-            weapon.Attack(this);
+                weapon.Attack(this);
+                if (ActualSlot.ammo != -1)
+                {
+                    ActualSlot.ammo--;
+                }
+                OnShoot(this, ActualSlot);
+            }
         }
         else
         {
